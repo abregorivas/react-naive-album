@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import {View, Text, Image } from 'react-native'
+import {View, Text, Image, Linking } from 'react-native'
 import Card from './Card'
 import CardItem from './CardItem'
 import Button from  './Button'
 
 const AlbumDetail = ({album}) => {
 
-const {title, artist, thumbnail_image, image} = album;
+const {title, artist, thumbnail_image, image, url} = album;
 
   return (
     <Card>
@@ -26,7 +26,10 @@ const {title, artist, thumbnail_image, image} = album;
       </CardItem>
 
       <CardItem>
-        <Button text={'Click Me!'} ></Button>
+        <Button text={'Click Me!'} onPress={() => Linking.openURL(url)}>
+        Buy Now
+        </Button>
+
       </CardItem>
 
     </Card>
