@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {View } from 'react-native'
 
-import Header from './Header'
+import {Header} from './common'
 import AlbumList from './AlbumList'
 
 class Albums extends Component {
