@@ -24,7 +24,7 @@ const {title, artist, thumbnail_image, image, url} = album;
       </CardItem>
 
       <CardItem>
-        <Button text={'Click Me!'} onPress={() => Linking.openURL(url)}>
+        <Button  onPress={() => Linking.openURL(url)}>
         Buy Now
         </Button>
 
