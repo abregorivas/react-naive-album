@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 // import { View, TextInput } from 'react-native'
 import { Button, Card, CardItem, Input } from './common'
 
@@ -6,7 +7,12 @@ import { Button, Card, CardItem, Input } from './common'
 class LoginForm extends Component {
   constructor (props) {
     super(props)
-    state = { email: '' }
+    state = { email: "", password: "" }
+  }
+
+  onButtonPress(){
+    const {email, password } = this.state
+    firebase.auth().signInWithEmailAndPassword(email, password)
   }
 
   render () {
@@ -20,10 +26,17 @@ class LoginForm extends Component {
               onChangeText={email => this.setState({ email })}
               />
           </CardItem>
-          <CardItem/>
-
           <CardItem>
-            <Button>Login</Button>
+            <Input
+              secureTextEntry
+              placeholder='password'
+              label={"Password"}
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })}
+            />
+          </CardItem>
+          <CardItem>
+            <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
           </CardItem>
         </Card>
     )
