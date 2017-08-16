@@ -27,15 +27,16 @@ class App extends Component {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <View>
+          <View style={{paddingBottom: 350}}>
+            <Header headerText={'Albums'}/>
             <CardItem>
               <Button onPress={() => firebase.auth().signOut()}>
                 Log Out
               </Button>
             </CardItem>
-            <CardItem>
+          <CardItem>
               <Albums/>
-            </CardItem>
+          </CardItem>
           </View>
         )
       case false:
