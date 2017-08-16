@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import firebase from 'firebase'
 
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from  './reducers'
+
 //Components
 import config from './firebaseAPI.js'
 import Albums from './components/Albums'
@@ -53,9 +57,11 @@ class App extends Component {
 
   render () {
     return (
-      <View>
-          {this.renderContent()}
-      </View>
+      <Provider store={createStore(reducers)}>
+        <View>
+            {this.renderContent()}
+        </View>
+      </Provider>
     )
   }
 }
