@@ -7,6 +7,7 @@ import config from '../firebaseAPI.js'
 import Albums from './Albums'
 import LoginForm from './LoginForm'
 import { Button, Header, Spinner, CardItem } from './common'
+
 class App extends Component {
   state = { loggedIn: null}
 
@@ -26,15 +27,24 @@ class App extends Component {
     switch (this.state.loggedIn) {
       case true:
         return (
-          <Albums/>
-        //   <CardItem>
-        //     <Button onPress={() => firebase.auth().signOut()}>
-        //       Log Out
-        //     </Button>
-        // </CardItem>
+          <View>
+            <CardItem>
+              <Button onPress={() => firebase.auth().signOut()}>
+                Log Out
+              </Button>
+            </CardItem>
+            <CardItem>
+              <Albums/>
+            </CardItem>
+          </View>
         )
       case false:
-        return <LoginForm />;
+        return (
+          <View>
+            <Header headerText={'Authentication'}/>
+            <LoginForm />
+          </View>
+        )
       default:
         return <Spinner size='large' />;
     }
@@ -43,7 +53,6 @@ class App extends Component {
   render () {
     return (
       <View>
-        <Header headerText={'Authentication'}/>
           {this.renderContent()}
       </View>
     )

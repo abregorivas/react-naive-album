@@ -10,11 +10,6 @@ class Albums extends Component {
     return (
       <View style={ {flex: 1} }>
         <Header headerText={'Albums'}/>
-        <CardItem>
-          <Button onPress={() => firebase.auth().signOut()}>
-            Log Out
-          </Button>
-          </CardItem>
         <AlbumList />
       </View>
           );
