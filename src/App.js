@@ -3,10 +3,10 @@ import { View } from 'react-native'
 import firebase from 'firebase'
 
 //Components
-import config from '../firebaseAPI.js'
-import Albums from './Albums'
-import LoginForm from './LoginForm'
-import { Button, Header, Spinner, CardItem } from './common'
+import config from './firebaseAPI.js'
+import Albums from './components/Albums'
+import LoginForm from './components/LoginForm'
+import { Button, Header, Spinner, CardItem } from './components/common'
 
 class App extends Component {
   state = { loggedIn: null}
