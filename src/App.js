@@ -11,9 +11,13 @@ import config from './firebaseAPI.js'
 import Albums from './components/Albums'
 import LoginForm from './components/LoginForm'
 import { Button, Header, Spinner, CardItem } from './components/common'
+import LibraryList from './components/LibraryList'
 
 class App extends Component {
-  state = { loggedIn: null}
+  state = {
+    loggedIn: null,
+    store: createStore(reducers)
+    }
 
   componentWillMount () {
     firebase.initializeApp( config )
@@ -57,9 +61,10 @@ class App extends Component {
 
   render () {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={this.state.store}>
         <View>
-            {this.renderContent()}
+            {/* {this.renderContent()} */}
+            <LibraryList />
         </View>
       </Provider>
     )
