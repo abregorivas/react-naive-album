@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import firebase from 'firebase'
 
 import { Provider } from 'react-redux'
@@ -12,24 +12,26 @@ import Albums from './components/Albums'
 import LoginForm from './components/LoginForm'
 import { Button, Header, Spinner, CardItem } from './components/common'
 import LibraryList from './components/LibraryList'
+const store = createStore(reducers)
 
 class App extends Component {
-  state = {
-    loggedIn: null,
-    store: createStore(reducers)
-    }
 
-  componentWillMount () {
-    firebase.initializeApp( config )
+  // state = {
+  //   loggedIn: null,
+  //   store: createStore(reducers)
+  //   }
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user) {
-        this.setState({loggedIn: true})
-      } else {
-        this.setState({loggedIn: false})
-      }
-    })
-  }
+  // componentWillMount () {
+  //   firebase.initializeApp( config )
+
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     if(user) {
+  //       this.setState({loggedIn: true})
+  //     } else {
+  //       this.setState({loggedIn: false})
+  //     }
+  //   })
+  // }
 
   renderContent() {
     switch (this.state.loggedIn) {
@@ -60,12 +62,12 @@ class App extends Component {
   }
 
   render () {
-    console.log('state.store', this.state.store)
-    console.log('state.stor.getState', this.state.store.getState())
     return (
-      <Provider store={this.state.store}>
+      <Provider store={store}>
         <View>
             {/* {this.renderContent()} */}
+
+            <Header headerText='Tech Cards'/>
             <LibraryList />
         </View>
       </Provider>

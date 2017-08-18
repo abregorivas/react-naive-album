@@ -6,12 +6,11 @@ import ListItem from './ListItem'
 class LibraryList extends Component {
 
   componentWillMount () {
-    console.log('cwm', this.props.lib);
     const dataSrc = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
-    })
+    });
 
-    this.dataSource = dataSrc.cloneWithRows(this.props.lib)
+    this.dataSource = dataSrc.cloneWithRows(this.props.libraries)
   }
 
 renderRow(library) {
@@ -19,16 +18,17 @@ renderRow(library) {
 }
 
   render () {
-    console.log('props', this.props)
     return(
-      // <ListView dataSource={this.dataSource} renderRow={this.renderRow}/>
-      <Text>Test</Text>
+      <ListView
+      dataSource={this.dataSource}
+      renderRow={this.renderRow}/>
     )
 
   }
 }
 
 const mapStateToProps = (state) => {
-  return {lib: state.lib}
+  console.log('mstp', state)
+  return {libraries: state.techData}
 }
 export default connect(mapStateToProps)(LibraryList)
