@@ -5,5 +5,5 @@ import SelectionReducer from './SelectionReducer'
 
 export default combineReducers({
   techData: LibraryReducer,
-  techSelection: SelectionReducer
+  techSelectionId: SelectionReducer
 })
