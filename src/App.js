@@ -60,6 +60,8 @@ class App extends Component {
   }
 
   render () {
+    console.log('state.store', this.state.store)
+    console.log('state.stor.getState', this.state.store.getState())
     return (
       <Provider store={this.state.store}>
         <View>
