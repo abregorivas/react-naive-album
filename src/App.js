@@ -63,8 +63,8 @@ class App extends Component {
     return (
       <Provider store={this.state.store}>
         <View>
-            {/* {this.renderContent()} */}
-            <LibraryList />
+            {this.renderContent()}
+            {/* <LibraryList /> */}
         </View>
       </Provider>
     )
