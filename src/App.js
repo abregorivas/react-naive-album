@@ -64,9 +64,8 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <View>
+        <View style={{flex: 1}}>
             {/* {this.renderContent()} */}
-
             <Header headerText='Tech Cards'/>
             <LibraryList />
         </View>
