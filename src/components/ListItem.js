@@ -1,17 +1,31 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableWithoutFeedback } from 'react-native'
+import {
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  LayoutAnimation
+ }
+ from 'react-native'
 import { CardItem } from './common'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 class ListItem extends Component {
+componentWillUpdate (nextProps, nextState) {
+    LayoutAnimation.spring()
+}
 
+
+  //note: used mapStateToProps using own props to determine if the specifc techdata id was selected and if it should be expanded
     renderDescription(){
-      const {library, techSelectionId} = this.props
-
-      if(library.id === techSelectionId) {
+      const {library, expanded} = this.props
+      if(expanded) {
         return (
-          <Text>{library.description}</Text>
+          <CardItem>
+            <Text style={{flex: 1}}>
+              {library.description}
+              </Text>
+          </CardItem>
         )
       }
     }
@@ -41,10 +55,9 @@ const styles = {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    techSelectionId: state.techSelectionId
-  }
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.techSelectionId === ownProps.library.id
+  return { expanded }
 }
 export default connect(mapStateToProps, actions)(ListItem)
 //note:
