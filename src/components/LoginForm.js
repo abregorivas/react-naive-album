@@ -7,42 +7,14 @@ import { connect } from 'react-redux'
 
 class LoginForm extends Component {
 
-  // state = { email: "", password: "", error: "", loading: false}
-  //the onButtonPress will attempt to authenticate the user, if that does not work then it will try to
-  // create a new user otherwise it will display an error
   onButtonPress(){
-    // const {email, password } = this.state
-    // this.setState({error: '', loading: true})
-    // firebase.auth().signInWithEmailAndPassword(email, password)
-    // .then(this.onLoginSuccess.bind(this))
-    // .catch( () => {
-    //   firebase.auth().createUserWithEmailAndPassword(email, password)
-    //   .then(this.onLoginSuccess.bind(this))
-    //   .catch(this.onLoginFail.bind(this))
-    // })
     const {email, password } = this.props
     this.props.loginUser({email, password})
   }
 
-  // onLoginSuccess(){
-  //   this.setState({
-  //     email: '',
-  //     password: '',
-  //     error: '',
-  //     loading: false
-  //   })
-  // }
-
-  // onLoginFail() {
-  //   this.setState({
-  //     error: 'Authentication Failed!',
-  //     loading: false
-  //   })
-  // }
-
-  renderButton (){
-    if(this.state.loading) {
-      return <Spinner size={'small'}/>
+  renderButton() {
+    if(this.props.loading) {
+      return <Spinner size={'large'}/>
     }
 
     return (
@@ -84,8 +56,7 @@ onPasswordUpdate (text) {
           <Text style={styles.errorTextStyle}>{this.props.error}</Text>
 
           <CardItem>
-            {/* {this.renderButton()} */}
-            <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+            {this.renderButton()}
           </CardItem>
         </Card>
     )
@@ -100,14 +71,10 @@ styles = {
   }
 }
 
-// mapStateToProps = ({ auth }) => {
-//   const { email, password, error } = auth;
-//   return { email, password, error }
-// }
 
 mapStateToProps = ( state ) => {
-  const { email, password, error } = state.auth;
-  return { email, password, error }
+  const { email, password, error, loading } = state.auth;
+  return { email, password, error, loading }
 }
 
 export default connect(mapStateToProps,
