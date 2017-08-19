@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { View, Text } from 'react-native'
 import { Button, Card, CardItem, Input, Spinner } from './common'
-import { emailChanged, passwordChanged } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 import { connect } from 'react-redux'
 
 class LoginForm extends Component {
@@ -11,15 +11,17 @@ class LoginForm extends Component {
   //the onButtonPress will attempt to authenticate the user, if that does not work then it will try to
   // create a new user otherwise it will display an error
   onButtonPress(){
-    const {email, password } = this.state
-    this.setState({error: '', loading: true})
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(this.onLoginSuccess.bind(this))
-    .catch( () => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch(this.onLoginFail.bind(this))
-    })
+    // const {email, password } = this.state
+    // this.setState({error: '', loading: true})
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    // .then(this.onLoginSuccess.bind(this))
+    // .catch( () => {
+    //   firebase.auth().createUserWithEmailAndPassword(email, password)
+    //   .then(this.onLoginSuccess.bind(this))
+    //   .catch(this.onLoginFail.bind(this))
+    // })
+    const {email, password } = this.props
+    this.props.loginUser({email, password})
   }
 
   onLoginSuccess(){
@@ -81,7 +83,8 @@ onPasswordUpdate (text) {
           <Text style={styles.errorTextStyle}>{this.state.error}</Text>
 
           <CardItem>
-            {this.renderButton()}
+            {/* {this.renderButton()} */}
+            <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
           </CardItem>
         </Card>
     )
@@ -103,4 +106,5 @@ mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {emailChanged, passwordChanged})(LoginForm)
+export default connect(mapStateToProps,
+  {emailChanged, passwordChanged, loginUser})(LoginForm)

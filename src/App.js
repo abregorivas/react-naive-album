@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import firebase from 'firebase'
-
+import ReduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import reducers from  './reducers'
 
 //Components
@@ -12,7 +12,7 @@ import Albums from './components/Albums'
 import LoginForm from './components/LoginForm'
 import { Button, Header, Spinner, CardItem } from './components/common'
 import LibraryList from './components/LibraryList'
-const store = createStore(reducers)
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
 
 class App extends Component {
 
