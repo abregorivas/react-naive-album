@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 class LoginForm extends Component {
 
-  state = { email: "", password: "", error: "", loading: false}
+  // state = { email: "", password: "", error: "", loading: false}
   //the onButtonPress will attempt to authenticate the user, if that does not work then it will try to
   // create a new user otherwise it will display an error
   onButtonPress(){
@@ -24,21 +24,21 @@ class LoginForm extends Component {
     this.props.loginUser({email, password})
   }
 
-  onLoginSuccess(){
-    this.setState({
-      email: '',
-      password: '',
-      error: '',
-      loading: false
-    })
-  }
+  // onLoginSuccess(){
+  //   this.setState({
+  //     email: '',
+  //     password: '',
+  //     error: '',
+  //     loading: false
+  //   })
+  // }
 
-  onLoginFail() {
-    this.setState({
-      error: 'Authentication Failed!',
-      loading: false
-    })
-  }
+  // onLoginFail() {
+  //   this.setState({
+  //     error: 'Authentication Failed!',
+  //     loading: false
+  //   })
+  // }
 
   renderButton (){
     if(this.state.loading) {
@@ -59,6 +59,7 @@ onPasswordUpdate (text) {
 }
 
   render () {
+    console.log('props', this.props)
     return (
         <Card>
           <CardItem>
@@ -80,7 +81,7 @@ onPasswordUpdate (text) {
             />
           </CardItem>
 
-          <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+          <Text style={styles.errorTextStyle}>{this.props.error}</Text>
 
           <CardItem>
             {/* {this.renderButton()} */}
@@ -99,11 +100,14 @@ styles = {
   }
 }
 
-mapStateToProps = (state) => {
-  return {
-    email: state.auth.email,
-    password: state.auth.password
-  }
+// mapStateToProps = ({ auth }) => {
+//   const { email, password, error } = auth;
+//   return { email, password, error }
+// }
+
+mapStateToProps = ( state ) => {
+  const { email, password, error } = state.auth;
+  return { email, password, error }
 }
 
 export default connect(mapStateToProps,
