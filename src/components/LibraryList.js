@@ -28,7 +28,6 @@ renderRow(library) {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mstp', state)
   return {libraries: state.techData}
 }
 
