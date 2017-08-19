@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { View, Text } from 'react-native'
 import { Button, Card, CardItem, Input, Spinner } from './common'
+import { emailChanged } from '../actions'
+import { connect } from 'react-redux'
 
 class LoginForm extends Component {
-  // constructor (props) {
-  //   super(props)
 
-  // }
   state = { email: "", password: "", error: "", loading: false}
   //the onButtonPress will attempt to authenticate the user, if that does not work then it will try to
   // create a new user otherwise it will display an error
@@ -49,6 +48,10 @@ class LoginForm extends Component {
     )
   }
 
+onEmailChange = (text)  => {
+  this.props.emailChanged(text)
+}
+
   render () {
     return (
         <Card>
@@ -56,8 +59,8 @@ class LoginForm extends Component {
             <Input
               placeholder='user@gmail.com'
               label={'Email'}
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
+              value={this.props.email}
+              onChangeText={this.onEmailChange.bind(this)}
               />
           </CardItem>
 
@@ -88,4 +91,11 @@ styles = {
     color: 'red'
   }
 }
-export default LoginForm
+
+mapStateToProps = (state) => {
+  return {
+    email: state.auth.email
+  }
+}
+
+export default connect(mapStateToProps, {emailChanged})(LoginForm)

@@ -16,22 +16,22 @@ const store = createStore(reducers)
 
 class App extends Component {
 
-  // state = {
-  //   loggedIn: null,
-  //   store: createStore(reducers)
-  //   }
+  state = {
+    loggedIn: null,
+    store: createStore(reducers)
+    }
 
-  // componentWillMount () {
-  //   firebase.initializeApp( config )
+  componentWillMount () {
+    firebase.initializeApp( config )
 
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if(user) {
-  //       this.setState({loggedIn: true})
-  //     } else {
-  //       this.setState({loggedIn: false})
-  //     }
-  //   })
-  // }
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.setState({loggedIn: true})
+      } else {
+        this.setState({loggedIn: false})
+      }
+    })
+  }
 
   renderContent() {
     switch (this.state.loggedIn) {
@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-            {/* {this.renderContent()} */}
+            {this.renderContent()}
             <Header headerText='Tech Cards'/>
             <LibraryList />
         </View>
