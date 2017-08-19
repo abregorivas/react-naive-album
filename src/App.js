@@ -5,6 +5,7 @@ import ReduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reducers from  './reducers'
+import Router from './Router'
 
 //Components
 import config from './firebaseAPI.js'
@@ -64,11 +65,12 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <View style={{flex: 1}}>
+        <Router />
+        {/* <View style={{flex: 1}}>
             {this.renderContent()}
             <Header headerText='Tech Cards'/>
             <LibraryList />
-        </View>
+        </View> */}
       </Provider>
     )
   }
