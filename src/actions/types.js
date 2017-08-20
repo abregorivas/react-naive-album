@@ -4,4 +4,4 @@ export const LOGIN_USER_SUCCESS = 'login_user_success'
 export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
 
-export const ARTIST_VALUE_CHAGE = 'artist_value_change'
+export const ARTIST_VALUE_CHANGE = 'artist_value_change'

@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 //using es6 "key interpolation" on return value of
 export default (state = INITIAL_STATE, action ) => {
-  swith(action.type) {
+  switch(action.type) {
     case ARTIST_VALUE_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value }
     default:
