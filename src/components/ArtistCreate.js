@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import { Picker, Text, View } from 'react-native'
 import { Card, CardItem, Input, Button } from './common'
 import { connect } from 'react-redux'
-import { artistUpdate } from '../actions'
+import { artistUpdate, artistCreate } from '../actions'
+import firebase from 'firebase'
 
 class ArtistCreate extends Component {
+  OnButtonPress() {
+    const {name, phone, genre } = this.props
+    this.props.artistCreate({name, phone, genre: genre || 'Rock' })
+  }
   render () {
     console.log('Artistprops', this.props)
     return (
@@ -43,7 +48,7 @@ class ArtistCreate extends Component {
         </CardItem>
 <Text/>
         <CardItem>
-          <Button>Save</Button>
+          <Button onPress={this.OnButtonPress.bind(this)}>Save</Button>
         </CardItem>
       </Card>
     )
@@ -62,4 +67,4 @@ const mapStateToProps = (state) => {
   return {name, phone, genre }
 }
 
-export default connect(mapStateToProps, {artistUpdate})(ArtistCreate)
+export default connect(mapStateToProps, {artistUpdate, artistCreate})(ArtistCreate)

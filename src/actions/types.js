@@ -5,3 +5,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
 
 export const ARTIST_VALUE_CHANGE = 'artist_value_change'
+export const ARTIST_CREATE = 'artist_create'
