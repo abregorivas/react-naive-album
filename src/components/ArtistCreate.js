@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Picker, Text, View } from 'react-native'
 import { Card, CardItem, Input, Button } from './common'
 import { connect } from 'react-redux'
 import { artistUpdate } from '../actions'
@@ -9,27 +10,38 @@ class ArtistCreate extends Component {
     return (
       <Card>
         <CardItem>
-        <Input
-        label="Name"
-        placeholder="Artist Name"
-        value={this.props.name}
-        onChangeText={(value) => this.props.artistUpdate({prop: 'name', value })}
-        />
+          <Input
+          label="Name"
+          placeholder="Artist Name"
+          value={this.props.name}
+          onChangeText={(value) => this.props.artistUpdate({prop: 'name', value })}
+          />
         </CardItem>
 
         <CardItem>
-        <Input
-        label="Phone"
-        placeholder="555-555-5555"
-        value={this.props.phone}
-        onChangeText={(value) => this.props.artistUpdate({prop: 'phone', value })}
-        />
+          <Input
+          label="Phone"
+          placeholder="555-555-5555"
+          value={this.props.phone}
+          onChangeText={(value) => this.props.artistUpdate({prop: 'phone', value })}
+          />
         </CardItem>
 
-        <CardItem>
-        <Input />
+        <CardItem style={{ flexDirection: 'column' }}>
+          <Text style={styles.pickerLabelStyle}>Genre</Text>
+          <Picker
+          selectedValue={this.props.genre}
+          onValueChange={value => this.props.artistUpdate({prop: 'genre', value})}
+          >
+              <Picker.Item label="Rock" value="Rock" />
+              <Picker.Item label="Country" value="Country" />
+              <Picker.Item label="Folk" value="Folk" />
+              <Picker.Item label="Pop" value="Pop" />
+              <Picker.Item label="Clasical" value="Clasical" />
+              <Picker.Item label="Rap" value="Rap" />
+          </Picker>
         </CardItem>
-
+<Text/>
         <CardItem>
           <Button>Save</Button>
         </CardItem>
@@ -38,9 +50,16 @@ class ArtistCreate extends Component {
   }
 }
 
+const styles = {
+  pickerLabelStyle: {
+    fontSize: 18,
+    paddingLeft: 20
+  }
+}
+
 const mapStateToProps = (state) => {
-  const { name, phone, shift } = state.artistForm
-  return {name, phone, shift }
+  const { name, phone, genre } = state.artistForm
+  return {name, phone, genre }
 }
 
 export default connect(mapStateToProps, {artistUpdate})(ArtistCreate)

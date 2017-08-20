@@ -3,7 +3,7 @@ import { ARTIST_VALUE_CHANGE } from '../actions/types'
 const INITIAL_STATE = {
   name: '',
   phone: '',
-  shift: ''
+  genre: ''
 }
 
 //using es6 "key interpolation" on return value of
