@@ -1,6 +1,10 @@
 import firebase from 'firebase'
 import { Actions } from 'react-native-router-flux'
-import { ARTIST_VALUE_CHANGE, ARTIST_CREATE } from './types'
+import {
+  ARTIST_VALUE_CHANGE,
+  ARTIST_CREATE ,
+  ARTIST_FETCH_SUCCESS
+} from './types'
 
 export const artistUpdate = ({ prop, value }) => {
   return {
@@ -14,9 +18,23 @@ export const artistUpdate = ({ prop, value }) => {
 export const artistCreate = ({name, phone, genre }) => {
   const { currentUser } = firebase.auth()
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/artists`)
     .push({ name, phone, genre })
-    .then(() => Actions.artistList)
+    .then(() => {
+      dispatch({ type: ARTIST_CREATE });
+      Actions.pop()
+    })
+  }
+}
+
+export const artistFetch = () => {
+  const { currentUser } = firebase.auth()
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/artists`)
+      .on('value', snapshot => {
+        dispatch({type: ARTIST_FETCH_SUCCESS, payload: snapshot.val() })
+      })
   }
 }

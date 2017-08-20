@@ -1,4 +1,8 @@
-import { ARTIST_VALUE_CHANGE } from '../actions/types'
+import {
+  ARTIST_VALUE_CHANGE,
+  ARTIST_CREATE,
+  ARTIST_FETCH_SUCCESS
+} from '../actions/types'
 
 const INITIAL_STATE = {
   name: '',
@@ -11,6 +15,8 @@ export default (state = INITIAL_STATE, action ) => {
   switch(action.type) {
     case ARTIST_VALUE_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value }
+    case ARTIST_CREATE:
+      return INITIAL_STATE
     default:
     return state
   }

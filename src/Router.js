@@ -16,7 +16,7 @@ const RouterComponent = () => {
         <Scene
           onRight={() => Actions.artistCreate()}
           rightTitle="Add"
-          key='artist'
+          key='artistList'
           component={ArtistList}
           title="Artists"
           initial

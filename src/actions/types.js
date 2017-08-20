@@ -6,3 +6,5 @@ export const LOGIN_USER = 'login_user'
 
 export const ARTIST_VALUE_CHANGE = 'artist_value_change'
 export const ARTIST_CREATE = 'artist_create'
+export const ARTIST_FETCH = 'artist_fetch'
+export const ARTIST_FETCH_SUCCESS = 'artist_fetch_success'

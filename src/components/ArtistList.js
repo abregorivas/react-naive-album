@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView } from 'react-native'
+import { connect } from 'react-redux'
+import { artistFetch } from '../actions'
 
 class ArtistList extends Component {
+  componentWillMount() {
+    this.props.artistFetch()
+  }
   render () {
     return (
       <View>
@@ -13,4 +18,4 @@ class ArtistList extends Component {
   }
 }
 
-export default ArtistList
+export default connect(null, { artistFetch })(ArtistList)
