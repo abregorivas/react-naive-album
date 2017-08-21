@@ -11,7 +11,7 @@ class ArtistCreate extends Component {
     this.props.artistCreate({name, phone, genre: genre || 'Rock' })
   }
   render () {
-    console.log('Artistprops', this.props)
+    console.log('Artistprops', this.props.artist)
     return (
       <Card>
         <CardItem>

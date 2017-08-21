@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { View, Text, ScrollView, ListView } from 'react-native'
+import { ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { artistFetch } from '../actions'
+import ArtistListItem from './ArtistListItem'
 
 
 //note: createDataSource is added to both compWillMount & compWillRecvProps
@@ -32,14 +33,18 @@ class ArtistList extends Component {
     this.dataSource = dataSrc.cloneWithRows(artists)
   }
 
+  renderRow(artist) {
+    return <ArtistListItem artist={artist} />
+  }
+
   render () {
     console.log('Artists', this.props)
     return (
-      <View>
-        <Text> Artist1 </Text>
-        <Text> Artist2 </Text>
-        <Text> Artist3 </Text>
-      </View>
+      <ListView
+        enableEmptySections
+        dataSource={this.dataSource}
+        renderRow={this.renderRow}
+      />
     )
   }
 }
