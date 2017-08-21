@@ -4,6 +4,7 @@ import { Card, CardItem, Button } from './common'
 import ArtistForm from './ArtistForm'
 import { connect } from 'react-redux'
 import { artistUpdate, artistSave } from '../actions'
+import Communcations from 'react-native-communications'
 
 class ArtistEdit extends Component {
 
@@ -22,12 +23,24 @@ class ArtistEdit extends Component {
     this.props.artistSave({ name, phone, genre, uid: this.props.artist.uid})
   }
 
+  //Cannot test this on IOS simulator but can on Android Simulator
+onTextPress(){
+  const { phone, genre } = this.props
+  Communcations.text(phone, `Your genre is ${genre}`)
+}
+
   render () {
     return (
       <Card>
         <ArtistForm {...this.props}/>
         <CardItem>
           <Button onPress={this.onButtonPress.bind(this)}>Save</Button>
+        </CardItem>
+
+        <CardItem>
+          <Button onPress={this.onTextPress.bind(this)}>
+            Text Artist
+          </Button>
         </CardItem>
       </Card>
     )

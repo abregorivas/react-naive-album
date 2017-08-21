@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { artistUpdate, artistCreate } from '../actions'
 import ArtistForm from './ArtistForm'
 
+// clear data passed into CWM to clear data on create artist form because prop data does not clear out when selecting a user and then clicking add. This fixes that issue
 const clearData = { name: '', phone: '', genre: 'Rock'}
 
 class ArtistCreate extends Component {
