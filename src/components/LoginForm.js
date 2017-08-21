@@ -31,7 +31,7 @@ onPasswordUpdate (text) {
 }
 
   render () {
-    console.log('Loginprops', this.props)
+    // console.log('Loginprops', this.props)
     return (
         <Card>
           <CardItem>

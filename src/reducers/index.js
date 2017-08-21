@@ -10,5 +10,5 @@ export default combineReducers({
   techSelectionId: SelectionReducer,
   auth: AuthReducer,
   artistForm: ArtistFormReducer,
-  artist: ArtistReducer
+  artists: ArtistReducer
 })
