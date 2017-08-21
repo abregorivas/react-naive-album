@@ -1,12 +1,13 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Card, CardItem, Button } from './common'
+import { Card, CardItem, Button, Confirm } from './common'
 import ArtistForm from './ArtistForm'
 import { connect } from 'react-redux'
 import { artistUpdate, artistSave } from '../actions'
 import Communcations from 'react-native-communications'
 
 class ArtistEdit extends Component {
+  state ={ showModal: false }
 
   //note: CWM iterate through the artist and pass it to the reducer
   componentWillMount () {
@@ -29,6 +30,17 @@ onTextPress(){
   Communcations.text(phone, `Your genre is ${genre}`)
 }
 
+onAccept() {
+  const { uid } = this.props.artist;
+console.log('test')
+  // this.props.employeeDelete({ uid });
+}
+
+onDecline() {
+  this.setState({ showModal: false });
+}
+
+
   render () {
     return (
       <Card>
@@ -42,6 +54,20 @@ onTextPress(){
             Text Artist
           </Button>
         </CardItem>
+
+        <CardItem>
+          <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+            Remove Artist
+          </Button>
+        </CardItem>
+
+        <Confirm
+        visible={this.state.showModal}
+        onAccept={this.onAccept.bind(this)}
+        onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure you want to delete this Artist
+        </Confirm>
       </Card>
     )
   }
