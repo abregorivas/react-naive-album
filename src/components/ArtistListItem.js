@@ -7,8 +7,9 @@ class ArtistListItem extends Component {
 
   //prop added to Actions method from router-flux to pass in specific artist to render on artist form
   onRowPress(){
-    Actions.artistCreate({artist: this.props.artist})
+    Actions.artistEdit({artist: this.props.artist})
   }
+
   render () {
     const { name } = this.props.artist
     return (

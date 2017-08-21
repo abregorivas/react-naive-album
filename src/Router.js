@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm'
 import  ArtistList from './components/ArtistList'
 import Albums from './components/Albums'
 import ArtistCreate from './components/ArtistCreate'
+import ArtistEdit from './components/ArtistEdit'
 
 const RouterComponent = () => {
   return (
@@ -23,6 +24,7 @@ const RouterComponent = () => {
           />
       </Scene>
       <Scene key="artistCreate" component={ArtistCreate} title="Add Artist" ></Scene>
+      <Scene key="artistEdit" component={ArtistEdit} title="Edit Artist" ></Scene>
     </Router>
   )
 }

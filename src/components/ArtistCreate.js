@@ -18,7 +18,7 @@ class ArtistCreate extends Component {
       <Card>
         <ArtistForm {...this.props}/>
         <CardItem>
-          <Button onPress={this.OnButtonPress.bind(this)}>Save</Button>
+          <Button onPress={this.OnButtonPress.bind(this)}>Create</Button>
         </CardItem>
       </Card>
     )
