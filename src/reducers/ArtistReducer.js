@@ -1,6 +1,7 @@
 import {
   ARTIST_FETCH,
-  ARTIST_FETCH_SUCCESS
+  ARTIST_FETCH_SUCCESS,
+  ARTIST_SAVE_SUCCESS
 } from '../actions/types'
 
 const INITIAL_STATE = {}

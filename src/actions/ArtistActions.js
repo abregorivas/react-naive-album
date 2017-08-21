@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux'
 import {
   ARTIST_VALUE_CHANGE,
   ARTIST_CREATE ,
-  ARTIST_FETCH_SUCCESS
+  ARTIST_FETCH_SUCCESS,
+  ARTIST_SAVE_SUCCESS
 } from './types'
 
 export const artistUpdate = ({ prop, value }) => {
@@ -36,5 +37,19 @@ export const artistFetch = () => {
       .on('value', snapshot => {
         dispatch({type: ARTIST_FETCH_SUCCESS, payload: snapshot.val() })
       })
+  }
+}
+
+
+export const artistSave = ({name, phone, genre, uid }) => {
+  const { currentUser } = firebase.auth()
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/artists/${uid}`)
+    .set({ name, phone, genre })
+    .then(() => {
+      dispatch({ type: ARTIST_SAVE_SUCCESS });
+      Actions.pop()
+    })
   }
 }

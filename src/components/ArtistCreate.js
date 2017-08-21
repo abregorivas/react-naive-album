@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import {  View } from 'react-native'
 import { Card, CardItem, Button } from './common'
@@ -5,7 +6,15 @@ import { connect } from 'react-redux'
 import { artistUpdate, artistCreate } from '../actions'
 import ArtistForm from './ArtistForm'
 
+const clearData = { name: '', phone: '', genre: 'Rock'}
+
 class ArtistCreate extends Component {
+
+  componentWillMount(){
+    _.each(clearData, (value, prop) => {
+      this.props.artistUpdate({ prop, value });
+    });
+  }
 
   OnButtonPress() {
     const {name, phone, genre } = this.props

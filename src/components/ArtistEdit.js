@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Card, CardItem, Button } from './common'
 import ArtistForm from './ArtistForm'
 import { connect } from 'react-redux'
-import { artistUpdate } from '../actions'
+import { artistUpdate, artistSave } from '../actions'
 
 class ArtistEdit extends Component {
 
@@ -19,6 +19,7 @@ class ArtistEdit extends Component {
     //note these are comming from the formReducer
     const { name, phone, genre } = this.props
     console.log(name, phone, genre )
+    this.props.artistSave({ name, phone, genre, uid: this.props.artist.uid})
   }
 
   render () {
@@ -38,4 +39,4 @@ const mapStateToProps = (state) => {
   return {name, phone, genre }
 }
 
-export default connect(mapStateToProps, { artistUpdate })(ArtistEdit)
+export default connect(mapStateToProps, { artistUpdate, artistSave })(ArtistEdit)
