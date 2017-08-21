@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Card, CardItem, Button, Confirm } from './common'
 import ArtistForm from './ArtistForm'
 import { connect } from 'react-redux'
-import { artistUpdate, artistSave } from '../actions'
+import { artistUpdate, artistSave, artistDelete } from '../actions'
 import Communcations from 'react-native-communications'
 
 class ArtistEdit extends Component {
@@ -33,7 +33,7 @@ onTextPress(){
 onAccept() {
   const { uid } = this.props.artist;
 console.log('test')
-  // this.props.employeeDelete({ uid });
+  this.props.artistDelete({ uid });
 }
 
 onDecline() {
@@ -78,4 +78,4 @@ const mapStateToProps = (state) => {
   return {name, phone, genre }
 }
 
-export default connect(mapStateToProps, { artistUpdate, artistSave })(ArtistEdit)
+export default connect(mapStateToProps, { artistUpdate, artistSave, artistDelete })(ArtistEdit)

@@ -53,3 +53,28 @@ export const artistSave = ({name, phone, genre, uid }) => {
     })
   }
 }
+
+export const artistDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/artists/${uid}`)
+    .remove()
+    .then(() => {
+      Actions.pop()
+    })
+  }
+}
+
+
+// export const employeeDelete = ({ uid }) => {
+//   const { currentUser } = firebase.auth();
+
+//   return () => {
+//     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+//       .remove()
+//       .then(() => {
+//         Actions.employeeList({ type: 'reset' });
+//       });
+//   };
+// };
