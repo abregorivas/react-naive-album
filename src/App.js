@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import firebase from 'firebase'
-
+import ReduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import reducers from  './reducers'
+import Router from './Router'
 
 //Components
 import config from './firebaseAPI.js'
@@ -12,8 +13,10 @@ import Albums from './components/Albums'
 import LoginForm from './components/LoginForm'
 import { Button, Header, Spinner, CardItem } from './components/common'
 import LibraryList from './components/LibraryList'
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
 
 class App extends Component {
+
   state = {
     loggedIn: null,
     store: createStore(reducers)
@@ -61,11 +64,13 @@ class App extends Component {
 
   render () {
     return (
-      <Provider store={this.state.store}>
-        <View>
+      <Provider store={store}>
+        <Router />
+        {/* <View style={{flex: 1}}>
             {this.renderContent()}
-            {/* <LibraryList /> */}
-        </View>
+            <Header headerText='Tech Cards'/>
+            <LibraryList />
+        </View> */}
       </Provider>
     )
   }

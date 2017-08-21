@@ -1,9 +1,10 @@
 import React from 'react'
 import {View } from 'react-native'
 
+//note: style is put into array to allow for style override
 const CardItem = (props) => {
   return (
-    <View style={styles.containerStyle}>
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   )
