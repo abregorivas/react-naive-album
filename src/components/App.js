@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import firebase from 'firebase'
 
 //Components
@@ -54,7 +54,6 @@ class App extends Component {
   render () {
     return (
       <View>
-          <Text>GI CLONED</Text>
           {this.renderContent()}
       </View>
     )
