@@ -30,17 +30,14 @@ build/
 local.properties
 *.iml
 
-# myExclusions
-/android
-/ios
-/__tests__
-firebaseAPI.js
-
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
+
+# myExclusions
+firebaseAPI.js
 
 # BUCK
 buck-out/
